@@ -18,10 +18,10 @@ const Removebtn = ({ id }) => {
                 const res = await fetch(`/api/topics?id=${id}`, {
                     method: "DELETE"
                 });
-                if(res){
-                    router.refresh();
+                if(res.ok){
+                    window.location.reload();
                 }
-                // window.location.reload();
+                
 
             } catch (error) {
                 console.log(error);
