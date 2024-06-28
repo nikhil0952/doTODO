@@ -1,23 +1,25 @@
+"use client"
 import Link from "next/link";
 import { HiPencilAlt } from "react-icons/hi";
 import Removebtn from "./Removebtn";
 
-const getData = async() => {
-    try {
-        const response = await fetch(`${process.env.API_URL}/api/topics`);
 
-        if (!response.ok) {
-            throw new Error("Error in fetching data!");
+
+const Topiclist = () => {
+    const getData = async() => {
+        try {
+            const response = await fetch(`/api/topics`);
+
+            if (!response.ok) {
+                throw new Error("Error in fetching data!");
+            }
+            return response.json();
+        } catch (error) {
+            console.error('Fetch error:', error);
+            return null;
         }
-        return response.json();
-    } catch (error) {
-        console.error('Fetch error:', error);
-        return null;
-    }
-};
-
-const Topiclist = async () => {
-    const data = await getData();
+    };
+    const data = getData();
 
     if (!data) {
         return <p>Error in fetching data!</p>;
