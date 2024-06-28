@@ -4,7 +4,7 @@ import Removebtn from "./Removebtn";
 
 const getData = async () => {
     try {
-        const values = await fetch(`/api/topics`, { cache: "no-store" });
+        const values = await fetch(`${process.env.API_URL}/api/topics`, { cache: "no-store" });
 
         if (!values.ok) {
             throw new Error("Errro in fetching data!");
@@ -18,7 +18,7 @@ const getData = async () => {
 
 const Topiclist = async () => {
     const resvalue = await getData();
-    if (resvalue !== undefined) {
+    if (resvalue) {
         const {values} = resvalue;
         
         return (
