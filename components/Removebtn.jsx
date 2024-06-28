@@ -7,17 +7,23 @@ import { useRouter } from "next/navigation";
 import { HiOutlineTrash } from "react-icons/hi"
 
 const Removebtn = ({ id }) => {
-
+    const API = process.env.API_URL;
     const router = useRouter();
 
     const deleteFun = async () => {
+     
         const r = confirm("Are you confirm!")
         if (r) {
             try {
-                await fetch(`${process.env.API_URL}/api/topics?id=${id}`, {
+                const res = await fetch(`/api/topics?id=${id}`, {
                     method: "DELETE"
                 });
-                router.refresh();
+                if(res.ok){
+                    router.refresh();
+                }else{
+                    throw new Error("Error in deleting value!");
+                }
+                
 
             } catch (error) {
                 console.log(error);
