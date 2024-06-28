@@ -4,7 +4,7 @@ import Removebtn from "./Removebtn";
 
 const getData = async () => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/topics`);
+    const response = await fetch(`${process.env.API_URL}/api/topics`);
 
     if (!response.ok) {
       throw new Error("Error in fetching data!");
