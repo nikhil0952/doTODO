@@ -1,46 +1,62 @@
 import Link from "next/link";
-import { HiPencilAlt } from "react-icons/hi";
+import { HiPencilAlt } from "react-icons/hi"
 import Removebtn from "./Removebtn";
 
 const getData = async () => {
-  try {
-    const response = await fetch(`${process.env.API_URL}/api/topics`,{cache:"no-cache"});
+    try {
+        const values = await fetch(`${process.env.API_URL}/api/topics`, { cache: "no-store" });
 
-    if (!response.ok) {
-      throw new Error("Error in fetching data!");
+        if (!values.ok) {
+            throw new Error("Errro in fetching data!");
+
+        }
+        return await values.json();
+    } catch (error) {
+        console.log(error);
     }
-    return await response.json();
-  } catch (error) {
-    console.error('Fetch error:', error);
-    return null;
-  }
-};
+}
 
 const Topiclist = async () => {
-  const data = await getData();
-  
-  if (!data) {
-    return <p>Error in fetching data!</p>;
-  }
+    const resvalue = await getData();
+    if (resvalue !== undefined) {
+        const {values} = resvalue;
+        
+        return (
+            <>
+                {
+                    values?.map((v) => {
+                        return (
 
-  return (
-    <>
-      {data?.map((topic) => (
-        <div key={topic._id} className="border p-5 mt-2 flex justify-between">
-          <div>
-            <h1>{topic.title}</h1>
-            <p>{topic.description}</p>
-          </div>
-          <div className="flex items-start gap-5">
-            <Removebtn id={topic._id} />
-            <Link href={`/editTodo/${topic._id}`}>
-              <HiPencilAlt size={24} />
-            </Link>
-          </div>
-        </div>
-      ))}
-    </>
-  );
-};
+                            <div key={v._id} className=" border p-5 mt-2 flex justify-between">
+                                <div className="">
+                                    <h1>{v.title}</h1>
+                                    <p>
+                                        {v.description}
+                                    </p>
+                                </div>
+                                <div className="flex items-start gap-5">
+                                    <Removebtn id={v._id} />
+                                    <Link href={`/editTodo/${v._id}`}>
+                                        <HiPencilAlt size={24} />
+                                    </Link>
+                                </div>
+                            </div>
+
+                        )
+                    })
+                }
+
+            </>
+        )
+    }else{
+        return(
+            <>
+            </>
+        )
+    }
+
+
+
+}
 
 export default Topiclist;
