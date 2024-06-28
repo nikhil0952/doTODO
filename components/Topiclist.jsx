@@ -4,7 +4,7 @@ import Removebtn from "./Removebtn";
 
 const getData = async () => {
     try {
-        const values = await fetch(`${process.env.API_URL}/api/topics`, { cache: "no-store" });
+        const values = await fetch(`${process.env.API_URL}/api/topics`);
 
         if (!values.ok) {
             throw new Error("Errro in fetching data!");
