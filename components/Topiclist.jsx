@@ -17,13 +17,13 @@ const getData = async () => {
 }
 
 const Topiclist = async () => {
-    const values = await getData();
+    const {values} =  await getData();
     
 
     return (
         <>
             {
-               values && values?.map((v) => {
+               values?.map((v) => {
                     return (
 
                         <div key={v._id} className=" border p-5 mt-2 flex justify-between">
