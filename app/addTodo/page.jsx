@@ -12,7 +12,7 @@ const AddTodoList = () => {
         event.preventDefault();
 
         try{
-            const dataTodo = await fetch("http://localhost:3000/api/topics",{
+            const dataTodo = await fetch(`${process.env.API_URL}/api/topics`,{
                 method:"POST",
                 headers:{
                     "Content-type": "application/json"

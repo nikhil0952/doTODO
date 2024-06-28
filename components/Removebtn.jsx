@@ -14,7 +14,7 @@ const Removebtn = ({ id }) => {
         const r = confirm("Are you confirm!")
         if (r) {
             try {
-                await fetch(`http://localhost:3000/api/topics?id=${id}`, {
+                await fetch(`${process.env.API_URL}/api/topics?id=${id}`, {
                     method: "DELETE"
                 });
                 router.refresh();

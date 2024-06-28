@@ -13,7 +13,7 @@ const EditTodoList = ({ params }) => {
 
     useEffect(() => {
         const getData = async () => {
-            const singleData = await fetch(`http://localhost:3000/api/topics/${params.id}`);
+            const singleData = await fetch(`${process.env.API_URL}/api/topics/${params.id}`);
             if (singleData.ok) {
                 const {value} = await singleData.json();
                 console.log(value);
@@ -36,7 +36,7 @@ const EditTodoList = ({ params }) => {
         event.preventDefault();
 
         try {
-            const res = await fetch(`http://localhost:3000/api/topics/${params.id}`, {
+            const res = await fetch(`${process.env.API_URL}/api/topics/${params.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json"
