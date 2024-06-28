@@ -4,10 +4,10 @@ import Removebtn from "./Removebtn";
 
 const getData = async () => {
     try {
-        const values = await fetch(`${process.env.API_URL}/api/topics`);
+        const values = await fetch(`http://localhost:3000/api/topics`);
 
         if (!values.ok) {
-            throw new Error("Errro in fetching data!");
+            throw new Error("Errro in fetching data! hello ");
 
         }
         return await values.json();
