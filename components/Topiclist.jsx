@@ -30,10 +30,10 @@ const Topiclist = () => {
     return (
         <>
             {data.map((topic) => (
-                <div key={topic._id} className="border p-5 mt-2 flex justify-between">
+                <div key={topic._id} className=" border p-5 mt-3 rounded-xl flex justify-between">
                     <div>
-                        <h1>{topic.title}</h1>
-                        <p>{topic.description}</p>
+                        <h1 className=" mb-1 w-fit p-1 pr-2 pl-2 text-lg font-bold bg-[#570303] ">{topic.title}</h1>
+                        <p className="p-1">{topic.description}</p>
                     </div>
                     <div className="flex items-start gap-5">
                         <Removebtn id={topic._id} />
