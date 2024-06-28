@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 
-const editTodoList = ({ params }) => {
+const EditTodoList = ({ params }) => {
 
 
     const [updateTitle, setTitle] = useState("");
@@ -85,4 +85,4 @@ const editTodoList = ({ params }) => {
         </>
     )
 }
-export default editTodoList;
+export default EditTodoList;

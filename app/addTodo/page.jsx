@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const addTodoList = () => {
+const AddTodoList = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const router = useRouter();
@@ -62,4 +62,4 @@ const addTodoList = () => {
         </>
     )
 }
-export default addTodoList;
+export default AddTodoList;

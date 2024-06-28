@@ -10,23 +10,23 @@ const getData = async () => {
             throw new Error("Errro in fetching data!");
             
         }
-        return values.json();
+        return await values.json();
     } catch (error) {
         console.log(error);
     }
 }
 
 const Topiclist = async () => {
-    const {values} = await getData();
+    const values = await getData();
     
 
     return (
         <>
             {
-                values?.map((v) => {
+               values && values?.map((v) => {
                     return (
 
-                        <div className=" border p-5 mt-2 flex justify-between">
+                        <div key={v._id} className=" border p-5 mt-2 flex justify-between">
                             <div className="">
                                 <h1>{v.title}</h1>
                                 <p>
