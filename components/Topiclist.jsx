@@ -4,7 +4,7 @@ import Removebtn from "./Removebtn";
 
 const getData = async () => {
     try {
-        const values = await fetch(`http://localhost:3000/api/topics`);
+        const values = await fetch(`https://dotolist-pyt4knv13-nikhil0952s-projects.vercel.app/api/topics`);
 
         if (!values.ok) {
             throw new Error("Errro in fetching data! hello ");
