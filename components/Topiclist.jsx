@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import { HiPencilAlt } from "react-icons/hi";
 import Removebtn from "../components/Removebtn";
