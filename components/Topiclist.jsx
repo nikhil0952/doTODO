@@ -8,7 +8,7 @@ const getData = async () => {
 
         if (!values.ok) {
             throw new Error("Errro in fetching data!");
-            
+
         }
         return await values.json();
     } catch (error) {
@@ -17,36 +17,46 @@ const getData = async () => {
 }
 
 const Topiclist = async () => {
-    const {values} =  await getData();
-    
+    const resvalue = await getData();
+    if (resvalue !== undefined) {
+        const {values} = resvalue;
+        
+        return (
+            <>
+                {
+                    values?.map((v) => {
+                        return (
 
-    return (
-        <>
-            {
-               values?.map((v) => {
-                    return (
-
-                        <div key={v._id} className=" border p-5 mt-2 flex justify-between">
-                            <div className="">
-                                <h1>{v.title}</h1>
-                                <p>
-                                    {v.description}
-                                </p>
+                            <div key={v._id} className=" border p-5 mt-2 flex justify-between">
+                                <div className="">
+                                    <h1>{v.title}</h1>
+                                    <p>
+                                        {v.description}
+                                    </p>
+                                </div>
+                                <div className="flex items-start gap-5">
+                                    <Removebtn id={v._id} />
+                                    <Link href={`/editTodo/${v._id}`}>
+                                        <HiPencilAlt size={24} />
+                                    </Link>
+                                </div>
                             </div>
-                            <div className="flex items-start gap-5">
-                                <Removebtn id = {v._id} />
-                                <Link href={`/editTodo/${v._id}`}>
-                                    <HiPencilAlt size={24} />
-                                </Link>
-                            </div>
-                        </div>
 
-                    )
-                })
-            }
+                        )
+                    })
+                }
 
-        </>
-    )
+            </>
+        )
+    }else{
+        return(
+            <>
+            </>
+        )
+    }
+
+
+
 }
 
 export default Topiclist;
