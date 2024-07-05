@@ -1,9 +1,11 @@
 "use client"
 
+import { Mycontext } from "@/context/Mycontext";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 const AddTodoList = () => {
+    const{dark} = useContext(Mycontext);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const router = useRouter();
@@ -33,15 +35,15 @@ const AddTodoList = () => {
     }
 
     return (
-        <>
+        <div className={`${dark ? "dark" : ""}`}>
             <form
                 onSubmit={formBtn}
-                className="flex border mt-2 rounded flex-col p-5 gap-5 text-black text-lg">
+                className="dark:border-red-600 dark:bg-white dark:text-white flex border mt-2 rounded flex-col p-5 gap-5 text-black text-lg">
                 <input
                     onChange={e => setTitle(e.target.value)}
                     value={title}
                     type="text" placeholder="Todo Title"
-                    className=" h-14 p-2"
+                    className=" h-14 p-2 dark:bg-[#000000d5] dark:text-white"
                 />
 
 
@@ -49,7 +51,7 @@ const AddTodoList = () => {
                     onChange={e => setDescription(e.target.value)}
                     value={description}
                     type="text" placeholder="Todo Description"
-                    className=" h-14 p-2"
+                    className=" h-14 p-2 dark:bg-[#000000d5] dark:text-white"
                 />
 
 
@@ -59,7 +61,7 @@ const AddTodoList = () => {
                     Add Todo
                 </button>
             </form>
-        </>
+        </div>
     )
 }
 export default AddTodoList;

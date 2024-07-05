@@ -1,11 +1,13 @@
 "use client"
 
+import { Mycontext } from "@/context/Mycontext";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 
 const EditTodoList = ({ params }) => {
 
+    const{dark} = useContext(Mycontext);
 
     const [updateTitle, setTitle] = useState("");
     const [updateDescription, setDescription] = useState("");
@@ -58,15 +60,15 @@ const EditTodoList = ({ params }) => {
 
 
     return (
-        <>
+        <div className={`${dark ? "dark" : ""}`}>
             <form
                 onSubmit={updateValues}
-                className="flex rounded border mt-2 flex-col p-5 gap-5 text-black text-lg">
+                className=" dark:bg-white dark:border-red-600 flex rounded border mt-2 flex-col p-5 gap-5 text-black text-lg">
                 <input
                     onChange={e => setTitle(e.target.value)}
                     value={updateTitle}
                     type="text" placeholder="Todo Title"
-                    className=" h-14 p-2"
+                    className=" h-14 p-2 dark:bg-[#000000d5] dark:text-white"
                 />
 
 
@@ -74,7 +76,7 @@ const EditTodoList = ({ params }) => {
                     onChange={e => setDescription(e.target.value)}
                     value={updateDescription}
                     type="text" placeholder="Todo Description"
-                    className=" h-14 p-2"
+                    className=" h-14 p-2 dark:bg-[#000000d5] dark:text-white"
                 />
                 <button
                     type="submit"
@@ -82,7 +84,7 @@ const EditTodoList = ({ params }) => {
                     Update Todo
                 </button>
             </form>
-        </>
+        </div>
     )
 }
 export default EditTodoList;
